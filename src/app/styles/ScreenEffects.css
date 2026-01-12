@@ -1,0 +1,48 @@
+/* 1. The Camera Lens */
+.linear-scene {
+  /* 1200px is a standard "close up" lens. 
+     Lower number = Closer camera, more drama. */
+  perspective: 1200px; 
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: visible; /* Lets the giant card bleed out if needed */
+  padding: 100px 0;
+}
+
+/* 2. The 3D Object */
+.screen-3d {
+  /* RENDER ENGINE */
+  transform-style: preserve-3d;
+  /* Helps prevents flickering on edges */
+  backface-visibility: hidden; 
+
+  /* GEOMETRY */
+  /* No scale(), no translateZ(). We rely on pure width for size. */
+  transform: rotateX(0deg) rotateY(0deg) rotateZ(-12deg);
+  transform-origin: center center;
+
+  /* SIZE (This brings it "close") */
+  /* By setting a massive width, the SVG draws sharply at that size. */
+  width: 90vw; 
+  max-width: 1600px; /* Cap it so it doesn't break ultrawide monitors */
+  
+  /* Visuals */
+  border-radius: 12px;
+  background-color: transparent;
+
+  padding-left: 150px;
+}
+
+/* 3. THE BLUR KILLER (Crucial) */
+/* This targets every element inside your screen component and 
+   strips away the inline filters that cause pixelation. */
+.screen-3d * {
+  filter: none !important;
+  /* Forces crisp font/vector rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  shape-rendering: geometricPrecision;
+}
