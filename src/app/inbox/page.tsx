@@ -2,20 +2,21 @@
 
 import { MainLayout } from "@/app/components/layout/MainLayout";
 import FirstHalf from "@/app/components/Inbox/first_half";
+import SecondHalf from "@/app/components/Inbox/second_half"; // <-- import here
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 
 export default function Inbox() {
   return (
-    <MainLayout title="Inbox" subtitle="Your notifications and assigned issues">
+    <MainLayout>
       <PanelGroup 
         direction="horizontal" 
-        autoSaveId="inbox-panel-layout" // <--- THIS SAVES THE WIDTH ON REFRESH
+        autoSaveId="inbox-panel-layout"
         className="min-h-screen w-full bg-[#101012]"
       >
         
         {/* Left Panel */}
         <Panel 
-          defaultSize={20} 
+          defaultSize={30} 
           minSize={20} 
           maxSize={50} 
           className="h-full"
@@ -30,9 +31,7 @@ export default function Inbox() {
 
         {/* Right Panel */}
         <Panel className="h-full">
-          <div className="h-full w-full">
-            {/* Right side content */}
-          </div>
+          <SecondHalf />
         </Panel>
 
       </PanelGroup>
